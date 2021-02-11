@@ -26,5 +26,17 @@ function addProjectDetails(e) {
 	// get rid of 'project' from the front of the id 'project3'
 	var idNumber = projectID.substr('project'.length);
 
+	var URL = "http://wi21-lab6-ivy.herokuapp.com/" + idNumber;
+
+	$.get(URL, addProject);
+
 	console.log("User clicked on project " + idNumber);
+}
+
+function addProject(result) {
+	var projectHTML = '<img src="' + result.image + '" class="detailsImage"' +
+		'<p>' + result.title + '</p>' +
+		'<p>' + result.date + '</p>' +
+		'<p>' + result.summary + '</p>';
+	$("#project" + result.id + " .details").html(projectHTML);
 }
